@@ -12,6 +12,7 @@ public class AdventOfCode {
         // Create a list of all the days
         List<Day> days = new ArrayList<>();
         days.add(new Days.Day1());
+        days.add(new Days.Day2());
 
         int dayNumber = 0;
 
