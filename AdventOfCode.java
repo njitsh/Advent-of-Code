@@ -36,7 +36,7 @@ public class AdventOfCode {
         // Get the current time
         Instant start = Instant.now();
         
-        // Run the part 1 code
+        // Run the part X code
         System.out.print("> Part " + part + ": " + day.part(part) + "\n");
         
         // Get the current time again

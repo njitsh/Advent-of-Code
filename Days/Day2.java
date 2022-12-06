@@ -10,7 +10,7 @@ public class Day2 extends Day {
     // B beats A
     // C beats B
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         System.out.println(part1());
         System.out.println(part2());
     }
@@ -19,7 +19,7 @@ public class Day2 extends Day {
         return super.getInput(location);
     }
 
-    public static String part1() {
+    public String part1() {
         List<String> input = new Day2().getInput("Days/input_day2.txt");
         int score = 0;
 
@@ -34,7 +34,7 @@ public class Day2 extends Day {
     // X means lose
     // Y means draw
     // Z means win
-    public static String part2() {
+    public String part2() {
         List<String> input = new Day2().getInput("Days/input_day2.txt");
         int score = 0;
 

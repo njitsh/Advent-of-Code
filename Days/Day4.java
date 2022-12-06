@@ -2,7 +2,7 @@ package Days;
 import java.util.*;
 
 public class Day4 extends Day {
-    public static void main(String[] args) {
+    public void main(String[] args) {
         System.out.println(part1());
         System.out.println(part2());
     }
@@ -11,7 +11,7 @@ public class Day4 extends Day {
         return super.getInput(location);
     }
 
-    public static String part1() {
+    public String part1() {
         List <String> input = new Day4().getInput("Days/input_day4.txt");
 
         int fullOverlapPairs = 0;
@@ -29,7 +29,7 @@ public class Day4 extends Day {
         return Integer.toString(fullOverlapPairs);
     }
 
-    public static String part2() {
+    public String part2() {
         List <String> input = new Day4().getInput("Days/input_day4.txt");
 
         int overlapPairs = 0;

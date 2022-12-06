@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Day5 extends Day {
     private static boolean stackPrint = false;
-    public static void main(String[] args) {
+    public void main(String[] args) {
         stackPrint = true;
         System.out.println(part1());
         System.out.println(part2());
@@ -13,11 +13,11 @@ public class Day5 extends Day {
         return super.getInput(location);
     }
 
-    public static String part1() {
+    public String part1() {
         return crateMover(false);
     }
 
-    public static String part2() {
+    public String part2() {
         return crateMover(true);
     }
 

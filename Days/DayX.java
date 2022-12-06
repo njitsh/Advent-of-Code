@@ -2,7 +2,7 @@ package Days;
 import java.util.*;
 
 public class DayX extends Day {
-    public static void main(String[] args) {
+    public void main(String[] args) {
         System.out.println(part1());
         System.out.println(part2());
     }
@@ -11,11 +11,11 @@ public class DayX extends Day {
         return super.getInput(location);
     }
 
-    public static String part1() {
-        return "Day X, Part 1";
+    public String part1() {
+        return "Day 1, Part 1";
     }
 
-    public static String part2() {
-        return "Day X, Part 2";
+    public String part2() {
+        return "Day 1, Part 2";
     }
 }

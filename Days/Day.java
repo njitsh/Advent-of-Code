@@ -4,13 +4,10 @@ import java.util.*;
 
 public class Day {
     public String part(int part) {
-        if (part == 1) {
-            return part1();
-        } else if (part == 2) {
-            return part2();
-        } else {
-            return "Invalid part number";
-        }
+        if (part == 1) return part1();
+        if (part == 2) return part2();
+        
+        throw new IllegalArgumentException("Invalid part number");
     }
 
     // Get input from file at location and return as String
@@ -31,11 +28,11 @@ public class Day {
         return input;
     }
 
-    public static String part1() {
+    public String part1() {
         return "Day X, Part 1";
     }
 
-    public static String part2() {
+    public String part2() {
         return "Day X, Part 2";
     }
 }
