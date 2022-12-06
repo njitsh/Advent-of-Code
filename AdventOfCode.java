@@ -13,6 +13,9 @@ public class AdventOfCode {
         List<Day> days = new ArrayList<>();
         days.add(new Days.Day1());
         days.add(new Days.Day2());
+        days.add(new Days.Day3());
+        days.add(new Days.Day4());
+        days.add(new Days.Day5());
 
         int dayNumber = 0;
 

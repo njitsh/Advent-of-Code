@@ -12,10 +12,10 @@ public class DayX extends Day {
     }
 
     public static String part1() {
-        return "Day 1, Part 1";
+        return "Day X, Part 1";
     }
 
     public static String part2() {
-        return "Day 1, Part 2";
+        return "Day X, Part 2";
     }
 }
