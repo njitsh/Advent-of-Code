@@ -16,6 +16,7 @@ public class AdventOfCode {
         days.add(new Days.Day3());
         days.add(new Days.Day4());
         days.add(new Days.Day5());
+        days.add(new Days.Day6());
 
         int dayNumber = 0;
 

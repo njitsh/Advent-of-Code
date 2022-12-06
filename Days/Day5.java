@@ -3,10 +3,11 @@ import java.util.*;
 
 public class Day5 extends Day {
     private static boolean stackPrint = false;
-    public void main(String[] args) {
+
+    public static void main(String[] args) {
         stackPrint = true;
-        System.out.println(part1());
-        System.out.println(part2());
+        System.out.println(new Day5().part1());
+        System.out.println(new Day5().part2());
     }
 
     public List<String> getInput(String location) {
@@ -114,7 +115,7 @@ public class Day5 extends Day {
 
         // Wait for 10ms
         try {
-            Thread.sleep(10);
+            Thread.sleep(5);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

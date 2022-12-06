@@ -2,9 +2,9 @@ package Days;
 import java.util.*;
 
 public class Day4 extends Day {
-    public void main(String[] args) {
-        System.out.println(part1());
-        System.out.println(part2());
+    public static void main(String[] args) {
+        System.out.println(new Day4().part1());
+        System.out.println(new Day4().part2());
     }
 
     public List<String> getInput(String location) {

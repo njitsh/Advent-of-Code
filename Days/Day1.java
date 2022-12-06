@@ -3,15 +3,15 @@ import java.util.*;
 
 public class Day1 extends Day {
     public static void main(String[] args) {
-        System.out.println(part1());
-        System.out.println(part2());
+        System.out.println(new Day1().part1());
+        System.out.println(new Day1().part2());
     }
 
     public List<String> getInput(String location) {
         return super.getInput(location);
     }
 
-    public static String part1() {
+    public String part1() {
         List<String> input = new Day1().getInput("Days/input_day1.txt");
         int maxCalories = 0;
         int currentCalories = 0;
@@ -30,7 +30,7 @@ public class Day1 extends Day {
         return Integer.toString(maxCalories);
     }
 
-    public static String part2() {
+    public String part2() {
         List<String> input = new Day1().getInput("Days/input_day1.txt");
         int[] topCalories = new int[3];
         

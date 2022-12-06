@@ -10,9 +10,9 @@ public class Day2 extends Day {
     // B beats A
     // C beats B
 
-    public void main(String[] args) {
-        System.out.println(part1());
-        System.out.println(part2());
+    public static void main(String[] args) {
+        System.out.println(new Day2().part1());
+        System.out.println(new Day2().part2());
     }
 
     public List<String> getInput(String location) {
