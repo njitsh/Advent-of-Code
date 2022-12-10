@@ -23,15 +23,6 @@ public class Day10 extends Day {
         int signalStrength = 0;
 
         while (i < input.size()) {
-
-            if ((cycles - 20) % 40 == 0) {
-                signalStrength += cycles * x;
-                System.out.println("Signal strength: " + cycles * x);
-                System.out.println("Cycles: " + cycles);
-                System.out.println("X: " + x);
-                System.out.println();
-            }
-
             if (instruction.substring(0,4).equals("addx")) {
                 int newX = x + Integer.parseInt(instruction.substring(5));
                 instruction = "setx " + newX;
@@ -41,6 +32,10 @@ public class Day10 extends Day {
             }
 
             cycles++;
+
+            if ((cycles - 20) % 40 == 0) {
+                signalStrength += cycles * x;
+            }
 
             if (!instruction.substring(0,4).equals("setx")) {
                 i++;
@@ -60,16 +55,9 @@ public class Day10 extends Day {
 
         String instruction = input.get(i);
 
-        String crt = "";
+        String crt = "\n";
 
         while (i < input.size()) {
-            if ((cycles - 20) % 40 == 0) {
-                System.out.println("Signal strength: " + cycles * x);
-                System.out.println("Cycles: " + cycles);
-                System.out.println("X: " + x);
-                System.out.println();
-            }
-            
             if (instruction.substring(0,4).equals("addx")) {
                 int newX = x + Integer.parseInt(instruction.substring(5));
                 instruction = "setx " + newX;
