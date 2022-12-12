@@ -4,7 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day11 extends Day {
+    private static boolean printOutput = false;
+
     public static void main(String[] args) {
+        printOutput = true;
         System.out.println(new Day11().part1());
         System.out.println(new Day11().part2());
     }
@@ -41,7 +44,7 @@ public class Day11 extends Day {
         int rounds = 10000;
 
         for (int i = 1; i <= rounds; i++) {
-            if (i % 1000 == 0) {
+            if (printOutput && i % 1000 == 0) {
                 // Print monkey inspections
                 for (Monkey monkey : monkeys) {
                     System.out.println(monkey.name + ": " + monkey.getInspections());
@@ -60,7 +63,7 @@ public class Day11 extends Day {
         return Long.toString(monkey_business);
     }
 
-    private List<Monkey> createMonkeys(List<String> input, boolean reliefDivide) {
+    private static List<Monkey> createMonkeys(List<String> input, boolean reliefDivide) {
         List<Monkey> monkeys = new ArrayList<Monkey>();
 
         int index = 0;
@@ -115,7 +118,7 @@ public class Day11 extends Day {
         return monkeys;
     }
 
-    public long[] monkeysMostInspections(List<Monkey> monkeys) {
+    private static long[] monkeysMostInspections(List<Monkey> monkeys) {
         long[] output = new long[2];
 
         long max_1 = 0;
@@ -136,7 +139,7 @@ public class Day11 extends Day {
         return output;
     }
 
-    public List<String> findData(String line, String regex) {
+    private static List<String> findData(String line, String regex) {
         List<String> output = new ArrayList<String>();
 
         Pattern pattern = Pattern.compile(regex);
@@ -150,7 +153,7 @@ public class Day11 extends Day {
         return output;
     }
 
-    private long calculateMonkeyBusiness(long monkey_1, long monkey_2) {
+    private static long calculateMonkeyBusiness(long monkey_1, long monkey_2) {
         return monkey_1 * monkey_2;
     }
 }
