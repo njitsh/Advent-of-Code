@@ -20,7 +20,7 @@ public class Day2 extends Day {
     }
 
     public String part1() {
-        List<String> input = new Day2().getInput("Days/input_day2.txt");
+        List<String> input = new Day2().getInput("2022/Days/input_day2.txt");
         int score = 0;
 
         for (String line : input) {
@@ -35,7 +35,7 @@ public class Day2 extends Day {
     // Y means draw
     // Z means win
     public String part2() {
-        List<String> input = new Day2().getInput("Days/input_day2.txt");
+        List<String> input = new Day2().getInput("2022/Days/input_day2.txt");
         int score = 0;
 
         for (String line : input) {

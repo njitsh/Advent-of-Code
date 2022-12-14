@@ -17,7 +17,7 @@ public class Day11 extends Day {
     }
 
     public String part1() {
-        List<String> input = getInput("Days/input_day11.txt");
+        List<String> input = getInput("2022/Days/input_day11.txt");
 
         List<Monkey> monkeys = createMonkeys(input, true);
 
@@ -37,7 +37,7 @@ public class Day11 extends Day {
     }
 
     public String part2() {
-        List<String> input = getInput("Days/input_day11.txt");
+        List<String> input = getInput("2022/Days/input_day11.txt");
 
         List<Monkey> monkeys = createMonkeys(input, false);
 

@@ -12,7 +12,7 @@ public class Day10 extends Day {
     }
 
     public String part1() {
-        List<String> input = getInput("Days/input_day10.txt");
+        List<String> input = getInput("2022/Days/input_day10.txt");
 
         int x = 1;
         int cycles = 0;
@@ -47,7 +47,7 @@ public class Day10 extends Day {
     }
 
     public String part2() {
-        List<String> input = getInput("Days/input_day10.txt");
+        List<String> input = getInput("2022/Days/input_day10.txt");
 
         int x = 1;
         int cycles = 0;

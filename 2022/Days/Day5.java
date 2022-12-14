@@ -23,7 +23,7 @@ public class Day5 extends Day {
     }
 
     private static String crateMover(boolean moveTogether) {
-        List<String> input = new Day5().getInput("Days/input_day5.txt");
+        List<String> input = new Day5().getInput("2022/Days/input_day5.txt");
 
         // Find input split line
         int splitLine = findSplitLine(input);

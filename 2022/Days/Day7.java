@@ -12,7 +12,7 @@ public class Day7 extends Day {
     }
 
     public String part1() {
-        List<String> input = new Day7().getInput("Days/input_day7.txt");
+        List<String> input = new Day7().getInput("2022/Days/input_day7.txt");
 
         // Create a map of directories
         Directory rootDir = createDirectory(input);
@@ -24,7 +24,7 @@ public class Day7 extends Day {
     }
 
     public String part2() {
-        List<String> input = new Day7().getInput("Days/input_day7.txt");
+        List<String> input = new Day7().getInput("2022/Days/input_day7.txt");
 
         // Create a map of directories
         Directory rootDir = createDirectory(input);

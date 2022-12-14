@@ -16,7 +16,7 @@ public class Day13 extends Day {
     }
 
     public String part1() {
-        List<String> input = getInput("Days/input_day13.txt");
+        List<String> input = getInput("2022/Days/input_day13.txt");
 
         int sumOfRightIndices = 0;
         int index = 1;
@@ -42,7 +42,7 @@ public class Day13 extends Day {
     }
 
     public String part2() {
-        List<String> input = getInput("Days/input_day13.txt");
+        List<String> input = getInput("2022/Days/input_day13.txt");
 
         // Remove empty lines
         input.removeIf(String::isEmpty);

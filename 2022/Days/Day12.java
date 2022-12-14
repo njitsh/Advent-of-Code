@@ -21,7 +21,7 @@ public class Day12 extends Day {
     }
 
     public String part1() {
-        List<String> input = getInput("Days/input_day12.txt");
+        List<String> input = getInput("2022/Days/input_day12.txt");
 
         char[][] grid = convertStringToGrid(input);
         int[][] distances = setStartingDistances(grid, S);
@@ -47,7 +47,7 @@ public class Day12 extends Day {
     }
 
     public String part2() {
-        List<String> input = getInput("Days/input_day12.txt");
+        List<String> input = getInput("2022/Days/input_day12.txt");
 
         char[][] grid = convertStringToGrid(input);
         int[][] distances = setStartingDistances(grid, E);

@@ -13,7 +13,7 @@ public class Day9 extends Day {
     }
 
     public String part1() {
-        List<String> input = new Day9().getInput("Days/input_day9.txt");
+        List<String> input = new Day9().getInput("2022/Days/input_day9.txt");
 
         List<RopeKnot> knots = createRope(2);
 
@@ -25,7 +25,7 @@ public class Day9 extends Day {
     }
 
     public String part2() {
-        List<String> input = new Day9().getInput("Days/input_day9.txt");
+        List<String> input = new Day9().getInput("2022/Days/input_day9.txt");
 
         List<RopeKnot> knots = createRope(10);
 

@@ -12,7 +12,7 @@ public class Day1 extends Day {
     }
 
     public String part1() {
-        List<String> input = new Day1().getInput("Days/input_day1.txt");
+        List<String> input = new Day1().getInput("2022/Days/input_day1.txt");
         int maxCalories = 0;
         int currentCalories = 0;
 
@@ -31,7 +31,7 @@ public class Day1 extends Day {
     }
 
     public String part2() {
-        List<String> input = new Day1().getInput("Days/input_day1.txt");
+        List<String> input = new Day1().getInput("2022/Days/input_day1.txt");
         int[] topCalories = new int[3];
         
         int currentCalories = 0;

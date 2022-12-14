@@ -15,7 +15,7 @@ public class Day8 extends Day {
     }
 
     public String part1() {
-        List<String> input = new DayX().getInput("Days/input_day8.txt");
+        List<String> input = new DayX().getInput("2022/Days/input_day8.txt");
 
         // Convert the input to a matrix
         int[][] forest = convertInputToMatrix(input);
@@ -30,7 +30,7 @@ public class Day8 extends Day {
     }
 
     public String part2() {
-        List<String> input = new DayX().getInput("Days/input_day8.txt");
+        List<String> input = new DayX().getInput("2022/Days/input_day8.txt");
 
         // Convert the input to a matrix
         int[][] forest = convertInputToMatrix(input);

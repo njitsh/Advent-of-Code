@@ -12,7 +12,7 @@ public class Day3 extends Day {
     }
 
     public String part1() {
-        List<String> input = new Day3().getInput("Days/input_day3.txt");
+        List<String> input = new Day3().getInput("2022/Days/input_day3.txt");
 
         int priorityScore = 0;
 
@@ -28,7 +28,7 @@ public class Day3 extends Day {
     }
 
     public String part2() {
-        List<String> input = new Day3().getInput("Days/input_day3.txt");
+        List<String> input = new Day3().getInput("2022/Days/input_day3.txt");
 
         int priorityScore = 0;
         
