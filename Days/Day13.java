@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Day13 extends Day {
     public static boolean printOutput = false;
+    private static boolean sort = false;
 
     public static void main(String[] args) {
         printOutput = true;
@@ -57,16 +58,28 @@ public class Day13 extends Day {
             packets.add(packetParser(packet));
         }
 
-        // Sort packets
-        packets.sort((a, b) -> a.checkOrderInt(b));
-
         // Find [[2]] and [[6]]
         int index_2 = 0;
         int index_6 = 0;
 
-        for (NumberList packet : packets) {
-            if (packet.toString().equals("[[2]]")) index_2 = packets.indexOf(packet) + 1;
-            if (packet.toString().equals("[[6]]")) index_6 = packets.indexOf(packet) + 1;
+        // Sort packets
+        if (sort) {
+            packets.sort((a, b) -> a.checkOrderInt(b));
+
+            for (NumberList packet : packets) {
+                if (packet.toString().equals("[[2]]")) index_2 = packets.indexOf(packet) + 1;
+                if (packet.toString().equals("[[6]]")) index_6 = packets.indexOf(packet) + 1;
+            }
+        } else {
+            // Added packets
+            NumberList packet_2 = packets.get(packets.size() - 2);
+            NumberList packet_6 = packets.get(packets.size() - 1);
+
+
+            for (NumberList packet : packets) {
+                if (packet.checkOrder(packet_2)) index_2++;
+                if (packet.checkOrder(packet_6)) index_6++;
+            }
         }
 
         int result = index_2 * index_6;
