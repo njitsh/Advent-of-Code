@@ -136,9 +136,9 @@ public class Day12 extends Day {
     }
 
     // If A* is used, this can be added to the priority queue
-    private static int distanceBetweenPoints(int[] a, int[] b) {
-        return (int) Math.round(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2));
-    }
+    // private static int distanceBetweenPoints(int[] a, int[] b) {
+    //     return (int) Math.round(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2));
+    // }
 
     private static Dijkstra dijkstra(char[][] grid, Dijkstra dijkstra, int[] startPos, boolean inverseDirection) {
         // Priority queue of points to visit

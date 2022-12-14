@@ -43,10 +43,10 @@ public class AdventOfCode {
             String time_part_1_string = durationToString(time_part_1);
             String time_part_2_string = durationToString(time_part_2);
             
-            System.out.println("Part 1: " + time_part_1_string + "s, " + "Part 2: " + time_part_2_string + "s\n");
+            System.out.println("Part 1: " + time_part_1_string + ", " + "Part 2: " + time_part_2_string + "\n");
         }
 
-        System.out.println("Total time: " + durationToString(time_total) + "s");
+        System.out.println("Total time: " + durationToString(time_total));
 
         // Check if within 1 second
         if (time_total.compareTo(Duration.ofSeconds(1)) < 0) {
@@ -69,6 +69,6 @@ public class AdventOfCode {
     }
 
     private static String durationToString(Duration duration) {
-        return duration.toString().replace("PT", "");
+        return duration.toString().replace("PT", "").replace("S", "s");
     }
 }

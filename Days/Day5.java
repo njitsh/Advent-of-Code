@@ -29,7 +29,7 @@ public class Day5 extends Day {
         int splitLine = findSplitLine(input);
 
         // Create stacks
-        Stack<Character>[] stacks = createStacks(input.subList(0, splitLine), splitLine);
+        List<Stack<Character>> stacks = createStacks(input.subList(0, splitLine), splitLine);
 
         // Print stacks
         printStacks(stacks);
@@ -57,13 +57,13 @@ public class Day5 extends Day {
         return splitLine;
     }
 
-    private static Stack<Character>[] createStacks(List<String> input, int splitLine) {
+    private static List<Stack<Character>> createStacks(List<String> input, int splitLine) {
         // Find number of stacks
         final int numberOfStacks = input.get(splitLine - 1).split("   ").length;
-        Stack<Character>[] stacks = new Stack[numberOfStacks];
+        List<Stack<Character>> stacks = new ArrayList<Stack<Character>>();
 
         for (int i = 0; i < numberOfStacks; i++) {
-            stacks[i] = new Stack<Character>();
+            stacks.add(new Stack<Character>());
         }
 
         // Fill stacks
@@ -72,7 +72,7 @@ public class Day5 extends Day {
             
             for (int j = 1; j < line.length(); j += 4) {
                 if (line.charAt(j) != ' ') {
-                    stacks[(j - 1) / 4].push(line.charAt(j));
+                    stacks.get((j - 1) / 4).push(line.charAt(j));
                 }
             }
         }
@@ -80,7 +80,7 @@ public class Day5 extends Day {
         return stacks;
     }
 
-    private static void printStacks(Stack<Character>[] stacks) {
+    private static void printStacks(List<Stack<Character>> stacks) {
         if (!stackPrint) return;
 
         // Clear terminal screen
@@ -97,9 +97,9 @@ public class Day5 extends Day {
 
         // System.out.flush();
         for (int i = stackSize - 1; i >= 0; i--) {
-            for (int j = 0; j < stacks.length; j++) {
-                if (stacks[j].size() > i) {
-                    System.out.print(" " + stacks[j].get(i) + " ");
+            for (int j = 0; j < stacks.size(); j++) {
+                if (stacks.get(j).size() > i) {
+                    System.out.print(" " + stacks.get(j).get(i) + " ");
                 } else {
                     System.out.print("   ");
                 }
@@ -108,7 +108,7 @@ public class Day5 extends Day {
         }
 
         // Print stack numbers
-        for (int i = 0; i < stacks.length; i++) {
+        for (int i = 0; i < stacks.size(); i++) {
             System.out.print(" " + i + " ");
         }
         System.out.println();
@@ -121,41 +121,41 @@ public class Day5 extends Day {
         }
     }
 
-    private static Stack<Character>[] moveCratesSeparately(Stack<Character>[] stacks, int amount, int stackFrom, int stackTo) {
+    private static List<Stack<Character>> moveCratesSeparately(List<Stack<Character>> stacks, int amount, int stackFrom, int stackTo) {
         for (int i = 0; i < amount; i++) {
             // Return if stack is empty
-            if (stacks[stackFrom].isEmpty()) throw new IllegalArgumentException("Stack " + stackFrom + " is empty");
+            if (stacks.get(stackFrom).isEmpty()) throw new IllegalArgumentException("Stack " + stackFrom + " is empty");
 
-            Character crate = stacks[stackFrom].pop();
-            stacks[stackTo].push(crate);
+            Character crate = stacks.get(stackFrom).pop();
+            stacks.get(stackTo).push(crate);
             printStacks(stacks);
         }
 
         return stacks;
     }
 
-    private static Stack<Character>[] moveCratesTogether(Stack<Character>[] stacks, int amount, int stackFrom, int stackTo) {
+    private static List<Stack<Character>> moveCratesTogether(List<Stack<Character>> stacks, int amount, int stackFrom, int stackTo) {
         // Return if stack is empty
-        if (stacks[stackFrom].isEmpty()) throw new IllegalArgumentException("Stack " + stackFrom + " is empty");
+        if (stacks.get(stackFrom).isEmpty()) throw new IllegalArgumentException("Stack " + stackFrom + " is empty");
 
         Stack<Character> temporaryStack = new Stack<Character>();
 
         // Remove crates from stack
         for (int i = 0; i < amount; i++) {
-            char crate = stacks[stackFrom].pop();
+            char crate = stacks.get(stackFrom).pop();
             temporaryStack.push(crate);
         }
 
         // Add crates to stack
         for (int i = 0; i < amount; i++) {
             char crate = (char) temporaryStack.pop();
-            stacks[stackTo].push(crate);
+            stacks.get(stackTo).push(crate);
         }
 
         return stacks;
     }
 
-    private static Stack<Character>[] executeDirections(Stack<Character>[] stacks, List<String> directions, boolean moveTogether) {
+    private static List<Stack<Character>> executeDirections(List<Stack<Character>> stacks, List<String> directions, boolean moveTogether) {
         // Read directions
         for (String direction : directions) {
             String[] parameters = direction.split(" ");
@@ -173,7 +173,7 @@ public class Day5 extends Day {
         return stacks;
     }
 
-    private static String getTopCrates(Stack<Character>[] stacks) {
+    private static String getTopCrates(List<Stack<Character>> stacks) {
         String topCrates = "";
 
         for (Stack<Character> stack : stacks) {
