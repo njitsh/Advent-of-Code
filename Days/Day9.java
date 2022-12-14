@@ -77,15 +77,15 @@ public class Day9 extends Day {
 
 class RopeKnot {
     private MathVector pos;
-    private MathVectorSet visited;
+    private Set<String> visited;
 
     private RopeKnot previous;
     private RopeKnot next;
 
     public RopeKnot() {
         this.pos = new MathVector(new int[] {0, 0});
-        this.visited = new MathVectorSet();
-        this.visited.add(this.pos);
+        this.visited = new HashSet<String>();
+        this.visited.add(this.pos.toString());
         this.previous = null;
         this.next = null;
     }
@@ -100,7 +100,7 @@ class RopeKnot {
         this.pos = this.pos.add(move);
 
         if (this.previous != null && this.next == null) {
-            this.visited.add(this.pos);
+            this.visited.add(this.pos.toString());
         }
 
         if (this.next != null) {
@@ -244,30 +244,34 @@ class MathVector {
     }
 }
 
-class MathVectorSet {
-    private List<MathVector> set;
+// Before a special set was used to keep track of visited positions
+// By checking the actual location values
+// Converting it to a string and using a HashSet was a lot faster
+// Time went from 0.17... seconds to 0.01 seconds
+// class MathVectorSet {
+//     private List<MathVector> set;
 
-    public MathVectorSet() {
-        this.set = new ArrayList<>();
-    }
+//     public MathVectorSet() {
+//         this.set = new ArrayList<>();
+//     }
 
-    public void add(MathVector v) {
-        if (!this.contains(v)) {
-            this.set.add(v);
-        }
-    }
+//     public void add(MathVector v) {
+//         if (!this.contains(v)) {
+//             this.set.add(v);
+//         }
+//     }
 
-    public boolean contains(MathVector v) {
-        for (MathVector vector : this.set) {
-            if (vector.equals(v)) {
-                return true;
-            }
-        }
+//     public boolean contains(MathVector v) {
+//         for (MathVector vector : this.set) {
+//             if (vector.equals(v)) {
+//                 return true;
+//             }
+//         }
 
-        return false;
-    }
+//         return false;
+//     }
 
-    public int size() {
-        return this.set.size();
-    }
-}
+//     public int size() {
+//         return this.set.size();
+//     }
+// }
