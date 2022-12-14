@@ -27,16 +27,30 @@ public class AdventOfCode {
 
         int dayNumber = 0;
 
+        Duration time_total = Duration.ZERO;
+
         // Run all the days
         for (Day day : days) {
             dayNumber++;
 
             System.out.print("Day " + dayNumber + "\n");
 
-            String time_part_1 = runPartOfDay(day, 1).toString().replace("PT", "");
-            String time_part_2 = runPartOfDay(day, 2).toString().replace("PT", "");
+            Duration time_part_1 = runPartOfDay(day, 1);
+            Duration time_part_2 = runPartOfDay(day, 2);
+
+            time_total = time_total.plus(time_part_1).plus(time_part_2);
+
+            String time_part_1_string = durationToString(time_part_1);
+            String time_part_2_string = durationToString(time_part_2);
             
-            System.out.println("Part 1: " + time_part_1 + "s, " + "Part 2: " + time_part_2 + "s\n");
+            System.out.println("Part 1: " + time_part_1_string + "s, " + "Part 2: " + time_part_2_string + "s\n");
+        }
+
+        System.out.println("Total time: " + durationToString(time_total) + "s");
+
+        // Check if within 1 second
+        if (time_total.compareTo(Duration.ofSeconds(1)) < 0) {
+            System.out.println("Total time is less than 1 second!");
         }
     }
 
@@ -52,5 +66,9 @@ public class AdventOfCode {
         
         // Calculate the difference
         return Duration.between(start, end);
+    }
+
+    private static String durationToString(Duration duration) {
+        return duration.toString().replace("PT", "");
     }
 }
