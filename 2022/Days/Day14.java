@@ -76,7 +76,7 @@ public class Day14 extends Day {
         return Integer.toString(restingSand);
     }
 
-    private List<List<int[]>> parseInput(List<String> input) {
+    private static List<List<int[]>> parseInput(List<String> input) {
         List<List<int[]>> parsedInput = new ArrayList<>();
 
         int minX = Integer.MAX_VALUE;
@@ -117,7 +117,7 @@ public class Day14 extends Day {
         return parsedInput;
     }
 
-    private char[][] rockFormation(List<List<int[]>> input, int minX, int minY, int maxX, int maxY, boolean floor) {
+    private static char[][] rockFormation(List<List<int[]>> input, int minX, int minY, int maxX, int maxY, boolean floor) {
         char[][] map = new char[maxY - minY + 1][maxX - minX + 1];
 
         for (List<int[]> line : input) {
@@ -163,11 +163,11 @@ public class Day14 extends Day {
         return map;
     }
 
-    private int convertToX(int x, int minX) {
+    private static int convertToX(int x, int minX) {
         return x - minX;
     }
 
-    private void printMap(char[][] map, int[] sandInput, int[] sand) {
+    private static void printMap(char[][] map, int[] sandInput, int[] sand) {
         String output = "\033[H\033[2J";
 
         int start = Math.max(0, sand[1] - 20);
@@ -202,7 +202,7 @@ public class Day14 extends Day {
         }
     }
 
-    private int sandFlow(char[][] map, int[] sandInput) {
+    private static int sandFlow(char[][] map, int[] sandInput) {
         int restingSand = 0;
         boolean newSand = true;
         int simulatons = 0;
@@ -259,11 +259,11 @@ public class Day14 extends Day {
         return restingSand;
     }
 
-    private boolean inMap(char[][] map, int[] point) {
+    private static boolean inMap(char[][] map, int[] point) {
         return point[0] >= 0 && point[0] < map[0].length && point[1] >= 0 && point[1] < map.length;
     }
 
-    private boolean canFall(char[][] map, int[] point) {
+    private static boolean canFall(char[][] map, int[] point) {
         return !inMap(map, point) || map[point[1]][point[0]] == '.';
     }
 }
