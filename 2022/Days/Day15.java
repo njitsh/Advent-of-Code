@@ -16,13 +16,16 @@ public class Day15 extends Day {
 
         List<Sensor> sensors = parseInput(input);
 
-        // Get minimum and maximum x and y coordinates
-        int[][] bounds = getBounds(sensors);
-
         int checkRow = 2000000;
 
+        // Remove all sensors that do not overlap with checkRow
+        List<Sensor> overlappingSensors = removeNonOverlappingSensors(sensors, checkRow);
+
+        // Get minimum and maximum x and y coordinates
+        int[] bounds = getBounds(sensors);
+
         // Count the number of spots covered by the sensors for checkRow
-        int count = countCoveredSpots(sensors, bounds, checkRow);
+        int count = countCoveredSpots(overlappingSensors, bounds, checkRow);
 
         return Integer.toString(count);
     }
@@ -67,38 +70,42 @@ public class Day15 extends Day {
         return sensors;
     }
 
-    private static int[][] getBounds(List<Sensor> sensors) {
+    private static int[] getBounds(List<Sensor> sensors) {
         int minX = Integer.MAX_VALUE;
         int maxX = Integer.MIN_VALUE;
-        int minY = Integer.MAX_VALUE;
-        int maxY = Integer.MIN_VALUE;
 
         for (Sensor sensor : sensors) {
-            int[][] coords = new int[][] {sensor.getCoordinates(), sensor.getClosestBeacon()};
+            int[] coords = new int[] {sensor.getX(), sensor.getClosestBeaconX()};
             
-            for (int[] coord : coords) {
-                if (coord[0] < minX) {
-                    minX = coord[0];
+            for (int coord : coords) {
+                if (coord < minX) {
+                    minX = coord;
                 }
-                if (coord[0] > maxX) {
-                    maxX = coord[0];
-                }
-                if (coord[1] < minY) {
-                    minY = coord[1];
-                }
-                if (coord[1] > maxY) {
-                    maxY = coord[1];
+                if (coord > maxX) {
+                    maxX = coord;
                 }
             }
         }
 
-        return new int[][] {{minX, maxX}, {minY, maxY}};
+        return new int[] {minX, maxX};
     }
 
-    private static int countCoveredSpots(List<Sensor> sensors, int[][] bounds, int checkRow) {
+    private static List<Sensor> removeNonOverlappingSensors(List<Sensor> sensors, int checkRow) {
+        List<Sensor> overlappingSensors = new ArrayList<>();
+
+        for (Sensor sensor : sensors) {
+            if (sensor.inRange(sensor.getX(), checkRow)) {
+                overlappingSensors.add(sensor);
+            }
+        }
+
+        return overlappingSensors;
+    }
+
+    private static int countCoveredSpots(List<Sensor> sensors, int[] bounds, int checkRow) {
         int count = 0;
         
-        for (int i = bounds[0][0]; i <= bounds[0][1]; i++) {
+        for (int i = bounds[0]; i <= bounds[1]; i++) {
             for (Sensor sensor : sensors) {
                 if (sensor.inRange(i, checkRow)) {
                     // If not on top of a beacon
@@ -184,9 +191,7 @@ public class Day15 extends Day {
                 }
             }
 
-            if (emptySpot) {
-                return intersection;
-            }
+            if (emptySpot) return intersection;
         }
         
         throw new RuntimeException("No empty spot found");
@@ -217,16 +222,8 @@ class Sensor {
         return distanceToBeacon;
     }
 
-    public int distanceToSensor(int x, int y) {
-        return Math.abs(coordinates[0] - x) + Math.abs(coordinates[1] - y);
-    }
-
     public boolean inRange(int x, int y) {
-        return distanceToSensor(x, y) <= distanceToBeacon;
-    }
-
-    public int[] getCoordinates() {
-        return coordinates;
+        return Math.abs(coordinates[0] - x) + Math.abs(coordinates[1] - y) <= distanceToBeacon;
     }
 
     public int getX() {
@@ -237,16 +234,8 @@ class Sensor {
         return coordinates[1];
     }
 
-    public int[] getClosestBeacon() {
-        return closestBeacon;
-    }
-
     public int getClosestBeaconX() {
         return closestBeacon[0];
-    }
-
-    public int getClosestBeaconY() {
-        return closestBeacon[1];
     }
 
     public boolean onTopOfBeacon(int x, int y) {
