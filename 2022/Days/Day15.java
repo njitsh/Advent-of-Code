@@ -2,7 +2,9 @@ package Days;
 import java.util.*;
 
 public class Day15 extends Day {
+    private static boolean quickCalculation = true;
     public static void main(String[] args) {
+        quickCalculation = false;
         System.out.println(new Day15().part1());
         System.out.println(new Day15().part2());
     }
@@ -24,8 +26,10 @@ public class Day15 extends Day {
         // Get minimum and maximum x and y coordinates
         int[] bounds = getBounds(sensors);
 
+        int count;
         // Count the number of spots covered by the sensors for checkRow
-        int count = countCoveredSpots(overlappingSensors, bounds, checkRow);
+        if (!quickCalculation) count = countCoveredSpots(overlappingSensors, bounds, checkRow);
+        else count = countCoveredSpotsFast(overlappingSensors, bounds, checkRow);
 
         return Integer.toString(count);
     }
@@ -105,26 +109,68 @@ public class Day15 extends Day {
     private static int countCoveredSpots(List<Sensor> sensors, int[] bounds, int checkRow) {
         int count = 0;
         
-        for (int i = bounds[0]; i <= bounds[1]; i++) {
+        for (int i = bounds[0]; i <= bounds[1];) {
+            boolean foundSensor = false;
             for (Sensor sensor : sensors) {
                 if (sensor.inRange(i, checkRow)) {
+                    foundSensor = true;
                     // If not on top of a beacon
                     if (!sensor.onTopOfBeacon(i, checkRow)) {
                         int horizontalDistance = sensor.distanceToBeacon() - Math.abs(sensor.getY() - checkRow);
                         if (i < sensor.getX()) {
                             int stepSize = (sensor.getX() - i) + horizontalDistance;
                             i += stepSize;
-                            count += stepSize + 1;
+                            count += stepSize;
                         } else if (i > sensor.getX()) {
                             int stepSize = Math.max(horizontalDistance - (i - sensor.getX()) - 1, 1);
                             i += stepSize;
-                            count += stepSize + 1;
+                            count += stepSize;
                         } else {
                             count++;
                         }
+                    } else {
+                        i++;
                     }
                     break;
                 }
+            }
+            if (!foundSensor) i++;
+        }
+
+        return count;
+    }
+
+    private static int countCoveredSpotsFast(List<Sensor> sensors, int[] bounds, int checkRow) {
+        int count = 0;
+        List<int[]> ranges = new ArrayList<int[]>();
+        
+        for (Sensor sensor : sensors) {
+            int[] range = sensor.getRangeAtY(checkRow);
+            ranges.add(range);
+        }
+
+        // Sort ranges by start
+        Collections.sort(ranges, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] a, int[] b) {
+                return a[0] - b[0];
+            }
+        });
+
+        // Count the number of spots covered by the ranges
+        int currentPos = bounds[0];
+
+        for (int[] range : ranges) {
+            if (currentPos > range[0]) {
+                if (currentPos > range[1]) {
+                    continue;
+                } else {
+                    count += range[1] - currentPos + 1;
+                    currentPos = range[1] + 1;
+                }
+            } else {
+                count += Math.abs(range[1] - range[0]) + 1;
+                currentPos = range[1] + 1;
             }
         }
 
@@ -213,15 +259,6 @@ class Sensor {
         this.distanceToBeacon = calculateDistanceToBeacon();
     }
 
-    // Manhattan distance
-    private int calculateDistanceToBeacon() {
-        return Math.abs(coordinates[0] - closestBeacon[0]) + Math.abs(coordinates[1] - closestBeacon[1]);
-    }
-
-    public int distanceToBeacon() {
-        return distanceToBeacon;
-    }
-
     public boolean inRange(int x, int y) {
         return Math.abs(coordinates[0] - x) + Math.abs(coordinates[1] - y) <= distanceToBeacon;
     }
@@ -232,6 +269,31 @@ class Sensor {
 
     public int getY() {
         return coordinates[1];
+    }
+
+    public int[] getRangeAtY(int y) {
+        int horizontalDistance = distanceToBeacon - Math.abs(coordinates[1] - y);
+        int startX = coordinates[0] - horizontalDistance;
+        int endX = coordinates[0] + horizontalDistance;
+
+        // Check if beacon is on startX
+        if (onTopOfBeacon(startX, y)) {
+            startX++;
+        } else if (onTopOfBeacon(endX, y)) {
+            endX--;
+        }
+
+        return new int[] {startX, endX};
+    }
+
+    // Beacon functions
+    // Manhattan distance
+    private int calculateDistanceToBeacon() {
+        return Math.abs(coordinates[0] - closestBeacon[0]) + Math.abs(coordinates[1] - closestBeacon[1]);
+    }
+
+    public int distanceToBeacon() {
+        return distanceToBeacon;
     }
 
     public int getClosestBeaconX() {
