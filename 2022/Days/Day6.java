@@ -12,7 +12,7 @@ public class Day6 extends Day {
     }
 
     public String part1() {
-        List<String> input = new Day6().getInput("2022/Days/input_day6.txt");
+        List<String> input = getInput("2022/Days/input_day6.txt");
 
         // Input is only one line
         String input_line = input.get(0);
@@ -23,7 +23,7 @@ public class Day6 extends Day {
     }
 
     public String part2() {
-        List<String> input = new Day6().getInput("2022/Days/input_day6.txt");
+        List<String> input = getInput("2022/Days/input_day6.txt");
 
         // Input is only one line
         String input_line = input.get(0);

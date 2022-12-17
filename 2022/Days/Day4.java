@@ -12,7 +12,7 @@ public class Day4 extends Day {
     }
 
     public String part1() {
-        List <String> input = new Day4().getInput("2022/Days/input_day4.txt");
+        List <String> input = getInput("2022/Days/input_day4.txt");
 
         int fullOverlapPairs = 0;
 
@@ -30,7 +30,7 @@ public class Day4 extends Day {
     }
 
     public String part2() {
-        List <String> input = new Day4().getInput("2022/Days/input_day4.txt");
+        List <String> input = getInput("2022/Days/input_day4.txt");
 
         int overlapPairs = 0;
 

@@ -15,15 +15,16 @@ public class Day5 extends Day {
     }
 
     public String part1() {
-        return crateMover(false);
+        List<String> input = getInput("2022/Days/input_day5.txt");
+        return crateMover(input, false);
     }
 
     public String part2() {
-        return crateMover(true);
+        List<String> input = getInput("2022/Days/input_day5.txt");
+        return crateMover(input, true);
     }
 
-    private static String crateMover(boolean moveTogether) {
-        List<String> input = new Day5().getInput("2022/Days/input_day5.txt");
+    private static String crateMover(List<String> input, boolean moveTogether) {
 
         // Find input split line
         int splitLine = findSplitLine(input);
